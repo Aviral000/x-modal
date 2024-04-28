@@ -8,11 +8,12 @@ const Userform = () => {
   const [dob, setDob] = useState('');
 
   return (
-    <div className='card'>
+    <div className='modal-content'>
       <h1>Fill Details</h1>
       <h3>Username:</h3>
       <input
         type="text"
+        id='username'
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         required
@@ -20,6 +21,7 @@ const Userform = () => {
       <h3>Email Address:</h3>
       <input
         type="email"
+        id='email'
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -27,6 +29,7 @@ const Userform = () => {
       <h3>Phone Number:</h3>
       <input
         type="text"
+        id='phone'
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         required
@@ -36,6 +39,7 @@ const Userform = () => {
       <h3>Date of Birth:</h3>
       <input
         type="date"
+        id='dob'
         value={dob}
         onChange={(e) => setDob(e.target.value)}
         required
@@ -52,7 +56,7 @@ export default function App() {
   };
 
   return (
-    <div className='container'>
+    <div className='modal'>
       <h1>User Details Modal</h1>
       <button type='button' onClick={toggle}>
         Open Form

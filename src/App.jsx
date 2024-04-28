@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
-const Userform = () => {
+const Userform = ({toggleSubmit}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -28,45 +28,48 @@ const Userform = () => {
     }
 
     console.log('Form submitted successfully!');
+    toggleSubmit(true);
   };
 
   return (
     <div className='modal-content'>
       <h1>Fill Details</h1>
-      <h3>Username:</h3>
-      <input
-        type="text"
-        id='username'
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <h3>Email Address:</h3>
-      <input
-        type="email"
-        id='email'
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <h3>Phone Number:</h3>
-      <input
-        type="text"
-        id='phone'
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-        required
-        minLength={10}
-        maxLength={10}
-      />
-      <h3>Date of Birth:</h3>
-      <input
-        type="date"
-        id='dob'
-        value={dob}
-        onChange={(e) => setDob(e.target.value)}
-        required
-      />
+      <form>
+        <h3>Username:</h3>
+        <input
+            type="text"
+            id='username'
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+        />
+        <h3>Email Address:</h3>
+        <input
+            type="email"
+            id='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+        />
+        <h3>Phone Number:</h3>
+        <input
+            type="text"
+            id='phone'
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
+            minLength={10}
+            maxLength={10}
+        />
+        <h3>Date of Birth:</h3>
+        <input
+            type="date"
+            id='dob'
+            value={dob}
+            onChange={(e) => setDob(e.target.value)}
+            required
+        />
+      </form>
       <button type='submit' onClick={handleSubmit} className='submit-button'>Submit</button>
     </div>
   );
@@ -79,6 +82,10 @@ export default function App() {
     setDisable((prevState) => !prevState);
   };
 
+  const toggleSubmit = (value) => {
+    setDisable(value);
+  }
+
   return (
     <div className='modal'>
       <h1>User Details Modal</h1>
@@ -87,7 +94,7 @@ export default function App() {
       </button>
       {!disable && (
         <div className='modal-overlay'>
-          <Userform />
+          <Userform toggleSubmit={toggleSubmit} />
         </div>
       )}
     </div>

@@ -7,6 +7,29 @@ const Userform = () => {
   const [phone, setPhone] = useState('');
   const [dob, setDob] = useState('');
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Invalid email. Please check your email address.');
+      return;
+    }
+
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(phone)) {
+      alert('Invalid phone number. Please enter a 10-digit phone number.');
+      return;
+    }
+
+    if (!dob) {
+      alert('Invalid date of birth. Please enter a valid date.');
+      return;
+    }
+
+    console.log('Form submitted successfully!');
+  };
+
   return (
     <div className='modal-content'>
       <h1>Fill Details</h1>
@@ -44,6 +67,7 @@ const Userform = () => {
         onChange={(e) => setDob(e.target.value)}
         required
       />
+      <button type='submit' onClick={handleSubmit}>Submit</button>
     </div>
   );
 };

@@ -89,16 +89,18 @@ export default function App() {
         Open Form
       </button>
       {modalOpen && (
-        <div
-          className='modal-overlay'
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              setModalOpen(false);
-            }
-          }}
-        >
-          <Userform />
-        </div>
+        <React.Fragment>
+          <div
+            className='modal-overlay'
+            onClick={(e) => {
+              if (e.target !== e.currentTarget && e.target.closest('.modal-content') === null) {
+                setModalOpen(false);
+              }
+            }}
+          >
+            <Userform />
+          </div>
+        </React.Fragment>
       )}
     </div>
   );

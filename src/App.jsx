@@ -67,7 +67,7 @@ const Userform = () => {
         onChange={(e) => setDob(e.target.value)}
         required
       />
-      <button type='submit' onClick={handleSubmit}>Submit</button>
+      <button type='submit' onClick={handleSubmit} className='submit-button'>Submit</button>
     </div>
   );
 };
